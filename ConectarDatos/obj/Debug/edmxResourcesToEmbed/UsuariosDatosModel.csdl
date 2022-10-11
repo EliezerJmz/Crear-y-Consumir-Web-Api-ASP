@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UsuariosDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="int_id" />
+    </Key>
+    <Property Name="int_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="str_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dat_fecha" Type="DateTime" Precision="0" />
+    <Property Name="str_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="str_direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="str_departamento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="int_telefono" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="UsuariosDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="usuarios" EntityType="Self.usuario" />
+  </EntityContainer>
+</Schema>
