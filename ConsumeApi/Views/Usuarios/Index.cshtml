@@ -61,7 +61,7 @@
         <td>
             <!--le envia el id al metodo edit para que realice una busqueda por id-->
             @Html.ActionLink("Edit", "Edit", new {  id=item.int_id  }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Detail", "Detail", new { id=item.int_id  }) |
             @Html.ActionLink("Delete", "Delete", new {  id=item.int_id})
         </td>
     </tr>

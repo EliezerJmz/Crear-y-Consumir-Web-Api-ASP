@@ -52,6 +52,31 @@ namespace ConsumeApi.Controllers
             }
         }
 
+        //GET USUARIO POR ID
+        //realizamos una busqueda del registro por medio de su ID, usamos un GET
+        public ActionResult Detail(int id)
+        {
+            string api = "api/usuarios/";
+            Usuarios usuario = new Usuarios();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(UrlBase);
+                //HTTP GET
+                var responseTask = client.GetAsync(api + id.ToString());
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<Usuarios>();
+                    readTask.Wait();
+                    usuario = readTask.Result;
+                }
+            }
+            return View(usuario);
+        }
+
+
         //Crea nuevo usuario
         //carga el formulario y llama al metodo HttpPost Create
         public ActionResult Create()

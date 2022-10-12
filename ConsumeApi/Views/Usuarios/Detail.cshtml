@@ -1,0 +1,75 @@
+﻿@model ConsumeApi.Models.Usuarios
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>Usuarios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.int_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.int_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.str_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.str_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dat_fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dat_fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.str_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.str_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.str_direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.str_direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.str_departamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.str_departamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.int_telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.int_telefono)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
