@@ -4,3 +4,5 @@ AdjuntarDB.sql
 UsuariosDB.mdf
 UsuariosDB.sql
 UsuariosDB_log.ldf
+packages
+.vs/

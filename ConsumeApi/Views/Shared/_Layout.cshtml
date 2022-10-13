@@ -8,6 +8,9 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <!--jquery lo usamos para el script se busqueda-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 </head>
 <body>
 
@@ -44,10 +47,13 @@
             @{
                 //Html.Partial("_LoginPartial")
             }
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" id="myInput" type="search" placeholder="Search" aria-label="Search">
+            <!--
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            -->
+
+        </form>
         </div>
     </nav>
 
@@ -58,6 +64,18 @@
             <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
         </footer>
     </div>
+
+    <!--script de busquesa usando jquery-->
+    <script>
+        $(document).ready(function(){
+          $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+    </script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
