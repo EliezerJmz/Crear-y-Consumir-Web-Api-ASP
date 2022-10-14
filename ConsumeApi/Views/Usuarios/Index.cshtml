@@ -9,6 +9,31 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+<h4>
+    Ordenar por Nombre:
+</h4>
+<p>
+    <!--usamos la api orderby por nombre, no usa parametro-->
+    @Html.ActionLink("OrderByName", "NameOrderBy", new { /*nomb = item.str_nombre**/ })
+</p>
+
+<div>
+    <h4>
+        Buscar por Dirección:
+    </h4>
+    <p>llamamos al metodo ContieneDireccion(dir) y le pasamos la dirección a buscar usamos un form con el metodo post </p>
+
+    <!--CREAMO UN FORMAULARIO PARA ENVIAR LOS DATOS POR MEIO DE POST-->
+    <form action="/Usuarios/ContieneDireccion" method="post">
+        <label>Dirección a Buscar: </label>
+        <input type="text" id="dir" name="dir" placeholder="Imgrese una Dirección" />
+  
+        <input type="submit" value="Enviar" />
+    </form>
+
+</div>
+
 <table class="table">
     <tr>
         <th>
@@ -63,10 +88,13 @@
                     <!--le envia el id al metodo edit para que realice una busqueda por id-->
                     @Html.ActionLink("Edit", "Edit", new { id = item.int_id }) |
                     @Html.ActionLink("Detail", "Detail", new { id = item.int_id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.int_id })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.int_id }) |
+                    <!--obtenemos usuario por medio de su nombre, enviamos el nombre como parametro al conrolador-->
+                    @Html.ActionLink("UserForName", "UserForNameList", new { nomb = item.str_nombre })
+
                 </td>
             </tr>
         }
-        </tbody>
+    </tbody>
 
 </table>

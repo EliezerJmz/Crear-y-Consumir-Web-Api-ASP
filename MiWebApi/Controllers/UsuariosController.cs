@@ -192,7 +192,7 @@ namespace MiWebApi.Controllers
 
         //Order by
         //Para diferenciar los metodos de la api podemos indicar una Route
-        //ni no indicamos rta se pueden diferenciar el nombre del parametro que reciben
+        //si no indicamos ruta se pueden diferenciar por el nombre del parametro que reciben
         //pero si son iguales o no reciben parametro debemos indicarles un nombre de ruta
         [HttpGet]
         [Route("api/OrderByNombre")]

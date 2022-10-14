@@ -286,6 +286,9 @@
     <Content Include="Views\Usuarios\Edit.cshtml" />
     <Content Include="Views\Usuarios\Delete.cshtml" />
     <Content Include="Views\Usuarios\Detail.cshtml" />
+    <Content Include="Views\Usuarios\UserForNameList.cshtml" />
+    <Content Include="Views\Usuarios\NameOrderBy.cshtml" />
+    <Content Include="Views\Usuarios\ContieneDireccion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -35,7 +35,7 @@ namespace ConsumeApi.Controllers
                 //indicamos el encabezado de la api que seran json
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 
-                //hacemos una peticion await a la parte de la api que lista a tosos ls usuarios usando Httpclient
+                //hacemos una peticion await a la parte de la api que lista a t ls usuarios usando Httpclient
                 HttpResponseMessage Respuesta = await client.GetAsync("api/usuarios");
 
                 //validamos si obtenemos una Respuesta con exito
@@ -74,6 +74,116 @@ namespace ConsumeApi.Controllers
                 }
             }
             return View(usuario);
+        }
+
+        //GET USUARIO POR NOMBRE
+        //realizamos una busqueda del registro por medio del nombre
+        public async Task<ActionResult> UserForNameList(string nomb)
+        {
+           //le debemos indicar el nomnbre dela variable que tiene en la api
+            string api = "api/Usuarios?nomb=";
+            //creamos una lista donde guardaremos la informacion de los usuarios
+            List<Usuarios> ListUsuarios = new List<Usuarios>();
+
+            //realizamos la conexion utilizanod HttpClient()
+            using (var client = new HttpClient())
+            {
+                //URL base de la api
+                client.BaseAddress = new Uri(UrlBase);
+                client.DefaultRequestHeaders.Clear();
+
+                //indicamos el encabezado de la api que seran json
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //hacemos una peticion await a la parte de la api que lista a los usuarios usando Httpclient
+                HttpResponseMessage Respuesta = await client.GetAsync(api + nomb);
+               
+
+                //validamos si obtenemos una Respuesta con exito
+                if (Respuesta.IsSuccessStatusCode)
+                {
+                    //si Respuesta = true entra y asigna los datos a la varaible UsuariosRespuesta
+                    var UsuariosRespuesta = Respuesta.Content.ReadAsStringAsync().Result;
+
+                    //Deserializar el api y asigna los datos de UsuariosRespuesta a la lista InfoUsuarios
+                    ListUsuarios = JsonConvert.DeserializeObject<List<Usuarios>>(UsuariosRespuesta);
+                }
+                //Retorna la lista de los usuarios
+                return View(ListUsuarios);
+            }
+        }
+
+        //GET ORDERBY POR NOMBRE
+        public async Task<ActionResult> NameOrderBy()
+        {
+            //le debemos indicar la path de la api
+            string api = "api/OrderByNombre";
+            //creamos una lista donde guardaremos la informacion de los usuarios
+            List<Usuarios> ListUsuarios = new List<Usuarios>();
+
+            //realizamos la conexion utilizanod HttpClient()
+            using (var client = new HttpClient())
+            {
+                //URL base de la api
+                client.BaseAddress = new Uri(UrlBase);
+                client.DefaultRequestHeaders.Clear();
+
+                //indicamos el encabezado de la api que seran json
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //hacemos una peticion await a la api con el metdo  OrderByNombre usando Httpclient
+                HttpResponseMessage Respuesta = await client.GetAsync(api);
+
+
+                //validamos si obtenemos una Respuesta con exito
+                if (Respuesta.IsSuccessStatusCode)
+                {
+                    //si Respuesta = true entra y asigna los datos a la varaible UsuariosRespuesta
+                    var UsuariosRespuesta = Respuesta.Content.ReadAsStringAsync().Result;
+
+                    //Deserializar el api y asigna los datos de UsuariosRespuesta a la lista InfoUsuarios
+                    ListUsuarios = JsonConvert.DeserializeObject<List<Usuarios>>(UsuariosRespuesta);
+                }
+                //Retorna la lista de los usuarios
+                return View(ListUsuarios);
+            }
+        }
+
+        //GET BUSCAR TEXTO CONTENIDO EN DIRECCION
+        [HttpPost]
+        public async Task<ActionResult> ContieneDireccion(string dir)
+        {
+            //le debemos indicar la variable de la api
+            string api = "api/Usuarios?dir=";
+            //creamos una lista donde guardaremos la informacion de los usuarios
+            List<Usuarios> ListUsuariosDir = new List<Usuarios>();
+
+            //realizamos la conexion utilizanod HttpClient()
+            using (var client = new HttpClient())
+            {
+                //URL base de la api
+                client.BaseAddress = new Uri(UrlBase);
+                client.DefaultRequestHeaders.Clear();
+
+                //indicamos el encabezado de la api que seran json
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //hacemos una peticion await al metodo de la api, usando Httpclient
+                HttpResponseMessage Respuesta = await client.GetAsync(api + dir);
+
+
+                //validamos si obtenemos una Respuesta con exito
+                if (Respuesta.IsSuccessStatusCode)
+                {
+                    //si Respuesta = true entra y asigna los datos a la varaible UsuariosRespuesta
+                    var UsuariosRespuesta = Respuesta.Content.ReadAsStringAsync().Result;
+
+                    //Deserializar el api y asigna los datos de UsuariosRespuesta a la lista
+                    ListUsuariosDir = JsonConvert.DeserializeObject<List<Usuarios>>(UsuariosRespuesta);
+                }
+                //Retorna la lista
+                return View(ListUsuariosDir);
+            }
         }
 
 
