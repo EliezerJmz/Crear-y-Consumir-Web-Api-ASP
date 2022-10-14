@@ -25,13 +25,14 @@
     <p>llamamos al metodo ContieneDireccion(dir) y le pasamos la dirección a buscar usamos un form con el metodo post </p>
 
     <!--CREAMO UN FORMAULARIO PARA ENVIAR LOS DATOS POR MEIO DE POST-->
-    <form action="/Usuarios/ContieneDireccion" method="post">
-        <label>Dirección a Buscar: </label>
-        <input type="text" id="dir" name="dir" placeholder="Imgrese una Dirección" />
-  
-        <input type="submit" value="Enviar" />
-    </form>
+    <form class="form-inline" action="/Usuarios/ContieneDireccion" method="post">
+        <div class="form-group mb-2">
+            <label class="sr-only">Dirección a Buscar: </label>
+            <input class="form-control" type="text" id="dir" name="dir" placeholder="Imgrese una Dirección" />  
+        </div>
 
+        <input type="submit" class="btn btn-primary mb-2 ml-2"  value="Enviar" />
+    </form>
 </div>
 
 <table class="table">

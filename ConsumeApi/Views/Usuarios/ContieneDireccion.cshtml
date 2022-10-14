@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<ConsumeApi.Models.Usuarios>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h4>
+    Busqueda filtrada por dirección:
+</h4>
+
 <table class="table">
     <tr>
         <th>
@@ -29,35 +30,37 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.int_id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.str_status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dat_fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.str_nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.str_direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.str_departamento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.int_telefono)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.int_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.str_status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dat_fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.str_nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.str_direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.str_departamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.int_telefono)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.int_id }) |
+                @Html.ActionLink("Detail", "Detail", new { id = item.int_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.int_id })
+            </td>
+        </tr>
+    }
 </table>
+
+@Html.ActionLink("Back to List", "Index")
