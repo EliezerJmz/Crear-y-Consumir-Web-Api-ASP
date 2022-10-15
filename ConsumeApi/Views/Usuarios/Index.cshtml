@@ -10,92 +10,137 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-<h4>
-    Ordenar por Nombre:
-</h4>
-<p>
-    <!--usamos la api orderby por nombre, no usa parametro-->
-    @Html.ActionLink("OrderByName", "NameOrderBy", new { /*nomb = item.str_nombre**/ })
-</p>
+<div class="row">
+    <div class="col-md-4">
+        <h4>
+            Ordenar por Nombre:
+        </h4>
+        <p>
+            llamamos al metodo NameOrderBy, para ordenar en orden los nombres de usuarios, no nececita envir parametros.
+        </p>
+        <p>
+            <!--usamos la api orderby por nombre, no usa parametro-->
+            @Html.ActionLink("OrderByName", "NameOrderBy", null, new { @class="btn btn-primary" })
+          
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h4>
+            Buscar por Dirección:
+        </h4>
+        <p>llamamos al metodo ContieneDireccion(dir) y le pasamos la dirección a buscar usamos un form con el metodo post </p>
 
-<div>
-    <h4>
-        Buscar por Dirección:
-    </h4>
-    <p>llamamos al metodo ContieneDireccion(dir) y le pasamos la dirección a buscar usamos un form con el metodo post </p>
+        <!--CREAMO UN FORMAULARIO PARA ENVIAR LOS DATOS POR MEDIO DE POST-->
+        <form class="form-inline" action="/Usuarios/ContieneDireccion" method="post">
+            <div class="form-group mb-2">
+                <label class="sr-only">Dirección a Buscar: </label>
+                <input class="form-control" type="text" id="dir" name="dir" placeholder="Imgrese una Dirección" />
+            </div>
 
-    <!--CREAMO UN FORMAULARIO PARA ENVIAR LOS DATOS POR MEIO DE POST-->
-    <form class="form-inline" action="/Usuarios/ContieneDireccion" method="post">
-        <div class="form-group mb-2">
-            <label class="sr-only">Dirección a Buscar: </label>
-            <input class="form-control" type="text" id="dir" name="dir" placeholder="Imgrese una Dirección" />  
-        </div>
+            <input type="submit" class="btn btn-primary mb-2 ml-2" value="Enviar" />
+        </form>
+    </div>
+    <div class="col-md-4">
+        <h4>
+            Buscar por Departamento:
+        </h4>
+        <p>llamamos al metodo BuscaDepartamento() y le pasamos el departamemto a buscar usamos un form con el metodo post </p>
 
-        <input type="submit" class="btn btn-primary mb-2 ml-2"  value="Enviar" />
-    </form>
+        <!--CREAMO UN FORMAULARIO PARA ENVIAR LOS DATOS POR MEDIO DE POST-->
+        <form class="form-inline" action="/Usuarios/BuscaDepartamento" method="post">
+            <div class="form-group mb-2">
+                <label class="sr-only">Departamento a Buscar: </label>
+                <input class="form-control" type="text" id="depa" name="depa" placeholder="Imgrese un Departamento" />
+            </div>
+
+            <input type="submit" class="btn btn-primary mb-2 ml-2" value="Enviar" />
+        </form>
+    </div>
 </div>
+<hr />
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.int_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.str_status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dat_fecha)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.str_nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.str_direccion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.str_departamento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.int_telefono)
-        </th>
-        <th></th>
-    </tr>
-    <tbody id="myTable">
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.int_id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.str_status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.dat_fecha)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.str_nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.str_direccion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.str_departamento)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.int_telefono)
-                </td>
-                <td>
-                    <!--le envia el id al metodo edit para que realice una busqueda por id-->
-                    @Html.ActionLink("Edit", "Edit", new { id = item.int_id }) |
-                    @Html.ActionLink("Detail", "Detail", new { id = item.int_id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.int_id }) |
-                    <!--obtenemos usuario por medio de su nombre, enviamos el nombre como parametro al conrolador-->
-                    @Html.ActionLink("UserForName", "UserForNameList", new { nomb = item.str_nombre })
+<div class="row">
+    <div class="col-md-4">
+        <h4>
+            Obtener Cantidad de Usuarios:
+        </h4>
+        <p>llamamos al metodo TakeUsers() y le pasamo la cantidad a buscar, usamos un form con el metodo post </p>
 
-                </td>
-            </tr>
-        }
-    </tbody>
+        <!--CREAMO UN FORMAULARIO PARA ENVIAR LOS DATOS POR MEDIO DE POST-->
+        <form class="form-inline" action="/Usuarios/TakeUsers" method="post">
+            <div class="form-group mb-2">
+                <label class="sr-only">Cantidad de usuarios a mostrar: </label>
+                <input class="form-control" type="number" id="cantidad" name="cantidad" placeholder="Imgrese una Cantidad" />
+            </div>
 
-</table>
+            <input type="submit" class="btn btn-primary mb-2 ml-2" value="Enviar" />
+        </form>
+
+    </div>
+</div>
+<br />
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.int_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.str_status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dat_fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.str_nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.str_direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.str_departamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.int_telefono)
+            </th>
+            <th></th>
+        </tr>
+        <tbody id="myTable">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.int_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.str_status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dat_fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.str_nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.str_direccion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.str_departamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.int_telefono)
+                    </td>
+                    <td>
+                        <!--le envia el id al metodo edit para que realice una busqueda por id-->
+                        @Html.ActionLink("Edit", "Edit", new { id = item.int_id }) |
+                        @Html.ActionLink("Detail", "Detail", new { id = item.int_id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.int_id }) |
+                        <!--obtenemos usuario por medio de su nombre, enviamos el nombre como parametro al conrolador-->
+                        @Html.ActionLink("UserForName", "UserForNameList", new { nomb = item.str_nombre })
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>

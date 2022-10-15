@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-
+using Microsoft.Ajax.Utilities;
 
 namespace ConsumeApi.Controllers
 {
@@ -183,6 +183,89 @@ namespace ConsumeApi.Controllers
                 }
                 //Retorna la lista
                 return View(ListUsuariosDir);
+            }
+        }
+
+        //GET BUSCAR DEPARTAMENTO
+        [HttpPost]
+        public async Task<ActionResult> BuscaDepartamento(string depa)
+        {
+            //le debemos indicar la variable de la api
+            string api = "api/Usuarios?depa=";
+            //creamos una lista donde guardaremos la informacion de los usuarios
+            List<Usuarios> ListUsuariosDepa = new List<Usuarios>();
+
+            //realizamos la conexion utilizanod HttpClient()
+            using (var client = new HttpClient())
+            {
+                //URL base de la api
+                client.BaseAddress = new Uri(UrlBase);
+                client.DefaultRequestHeaders.Clear();
+
+                //indicamos el encabezado de la api que seran json
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //hacemos una peticion await al metodo de la api, usando Httpclient
+                HttpResponseMessage Respuesta = await client.GetAsync(api + depa);
+
+
+                //validamos si obtenemos una Respuesta con exito
+                if (Respuesta.IsSuccessStatusCode)
+                {
+                    //si Respuesta = true entra y asigna los datos a la varaible UsuariosRespuesta
+                    var UsuariosRespuesta = Respuesta.Content.ReadAsStringAsync().Result;
+
+                    //Deserializar el api y asigna los datos de UsuariosRespuesta a la lista
+                    ListUsuariosDepa = JsonConvert.DeserializeObject<List<Usuarios>>(UsuariosRespuesta);
+                }
+                //Retorna la lista
+                return View(ListUsuariosDepa);
+            }
+        }
+
+
+        //GET OBTENER CANTIDAD INDICADA DE USUARIOS
+        [HttpPost]
+        public async Task<ActionResult> TakeUsers(int? cantidad)
+        {
+           //validamos si recibimos una cantidad null o < a  cero
+           //le indicamos a cantidad que pueda recibir nulls con int?
+            string valor = Request.Form["cantidad"];
+            if (String.IsNullOrEmpty(valor) | cantidad < 0)
+            {
+                cantidad = 3;
+            }
+
+            //le debemos indicar la variable de la api
+            string api = "api/TakeNombres?cantidad=";
+            //creamos una lista donde guardaremos la informacion de los usuarios
+            List<Usuarios> ListUsuariosTake = new List<Usuarios>();
+
+            //realizamos la conexion utilizanod HttpClient()
+            using (var client = new HttpClient())
+            {
+                //URL base de la api
+                client.BaseAddress = new Uri(UrlBase);
+                client.DefaultRequestHeaders.Clear();
+
+                //indicamos el encabezado de la api que seran json
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //hacemos una peticion await al metodo de la api, usando Httpclient
+                HttpResponseMessage Respuesta = await client.GetAsync(api + cantidad.ToString());
+
+
+                //validamos si obtenemos una Respuesta con exito
+                if (Respuesta.IsSuccessStatusCode)
+                {
+                    //si Respuesta = true entra y asigna los datos a la varaible UsuariosRespuesta
+                    var UsuariosRespuesta = Respuesta.Content.ReadAsStringAsync().Result;
+
+                    //Deserializar el api y asigna los datos de UsuariosRespuesta a la lista
+                    ListUsuariosTake = JsonConvert.DeserializeObject<List<Usuarios>>(UsuariosRespuesta);
+                }
+                //Retorna la lista
+                return View(ListUsuariosTake);
             }
         }
 

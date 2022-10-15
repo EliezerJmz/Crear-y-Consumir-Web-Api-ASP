@@ -241,12 +241,12 @@ namespace MiWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("api/TakeCincoNombres")]
-        public IEnumerable<usuario> TakeCincoNombres()
+        [Route("api/TakeNombres")]
+        public IEnumerable<usuario> TakeNombres(int cantidad)
         {
             using (UsuariosDBEntities db = new UsuariosDBEntities())
             {
-                var TakeNombre = db.usuarios.OrderBy(u => u.str_nombre).Take(5).ToList();
+                var TakeNombre = db.usuarios.OrderBy(u => u.str_nombre).Take(cantidad).ToList();
 
                 return TakeNombre;
             }
