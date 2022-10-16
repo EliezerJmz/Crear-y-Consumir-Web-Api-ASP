@@ -269,6 +269,43 @@ namespace ConsumeApi.Controllers
             }
         }
 
+        //GET ORDERBY POR DOS CAMPOS NOMBRE Y DEPARTAMENTO
+        public async Task<ActionResult> OrderByNombreDepartamento()
+        {
+            //le debemos el nombre que tiene la api en el path
+            string api = "api/OrderByNombreDepartamento";
+            //creamos una lista donde guardaremos la informacion de los usuarios
+            List<Usuarios> ListUsuarios = new List<Usuarios>();
+
+            //realizamos la conexion utilizanod HttpClient()
+            using (var client = new HttpClient())
+            {
+                //URL base de la api
+                client.BaseAddress = new Uri(UrlBase);
+                client.DefaultRequestHeaders.Clear();
+
+                //indicamos el encabezado de la api que seran json
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //hacemos una peticion await a la api  usando Httpclient
+                HttpResponseMessage Respuesta = await client.GetAsync(api);
+
+
+                //validamos si obtenemos una Respuesta con exito
+                if (Respuesta.IsSuccessStatusCode)
+                {
+                    //si Respuesta = true entra y asigna los datos a la varaible UsuariosRespuesta
+                    var UsuariosRespuesta = Respuesta.Content.ReadAsStringAsync().Result;
+
+                    //Deserializar el api y asigna los datos de UsuariosRespuesta a la lista InfoUsuarios
+                    ListUsuarios = JsonConvert.DeserializeObject<List<Usuarios>>(UsuariosRespuesta);
+                }
+                //Retorna la lista de los usuarios ordenados por departamento
+                return View(ListUsuarios);
+            }
+        }
+
+
 
         //Crea nuevo usuario
         //carga el formulario y llama al metodo HttpPost Create

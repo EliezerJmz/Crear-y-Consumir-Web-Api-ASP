@@ -291,6 +291,7 @@
     <Content Include="Views\Usuarios\ContieneDireccion.cshtml" />
     <Content Include="Views\Usuarios\BuscaDepartamento.cshtml" />
     <Content Include="Views\Usuarios\TakeUsers.cshtml" />
+    <Content Include="Views\Usuarios\OrderByNombreDepartamento.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

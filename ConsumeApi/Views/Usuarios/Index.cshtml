@@ -64,7 +64,7 @@
         <h4>
             Obtener Cantidad de Usuarios:
         </h4>
-        <p>llamamos al metodo TakeUsers() y le pasamo la cantidad a buscar, usamos un form con el metodo post </p>
+        <p>llamamos al metodo TakeUsers() y le pasamo la cantidad a buscar, usamos un form con el metodo post, para enviar parametros al controller. </p>
 
         <!--CREAMO UN FORMAULARIO PARA ENVIAR LOS DATOS POR MEDIO DE POST-->
         <form class="form-inline" action="/Usuarios/TakeUsers" method="post">
@@ -75,6 +75,15 @@
 
             <input type="submit" class="btn btn-primary mb-2 ml-2" value="Enviar" />
         </form>
+    </div>
+    <div class="col-md-4">
+        <h4>
+            OderBy por Dos Campos Nombre y Departamento:
+        </h4>
+        <p>llamamos al metodo OrderByNombreDepartamento, no enviamos parametos. </p>
+
+        <!--Unicamente llamamos al metodo, no usa parametro-->
+        @Html.ActionLink("OrderByNombreDepartamento", "OrderByNombreDepartamento", null, new { @class = "btn btn-primary" })
 
     </div>
 </div>

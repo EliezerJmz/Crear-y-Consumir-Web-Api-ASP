@@ -54,13 +54,13 @@
                 @Html.DisplayFor(modelItem => item.int_telefono)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.int_id }) |
-                @Html.ActionLink("Detail", "Detail", new { id=item.int_id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.int_id })
+                @Html.ActionLink("Edit", "Edit", new { d = item.int_id }) |
+                @Html.ActionLink("Detail", "Detail", new { id = item.int_id }) |
+                @Html.ActionLink("Delete", "Delete", new { d = item.int_id })
             </td>
         </tr>
     }
 
 </table>
 
-@Html.ActionLink("Back to List", "Index")
+@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })

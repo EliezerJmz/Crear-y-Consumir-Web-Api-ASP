@@ -234,6 +234,7 @@ namespace MiWebApi.Controllers
         {
             using (UsuariosDBEntities db = new UsuariosDBEntities())
             {
+                //Ordenamos por dos campos nombre y departamento
                 var OrderByNombreDepartamento = db.usuarios.OrderBy(u => u.str_nombre).ThenBy(u => u.str_departamento) .ToList();
 
                 return OrderByNombreDepartamento;
