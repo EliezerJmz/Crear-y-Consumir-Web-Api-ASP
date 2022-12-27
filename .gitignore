@@ -2,7 +2,6 @@
 # https://guias.makeitreal.camp/git/gitignore
 AdjuntarDB.sql
 UsuariosDB.mdf
-UsuariosDB.sql
 UsuariosDB_log.ldf
 packages
 .vs/
